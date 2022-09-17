@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entitys\" />
     <Folder Include="IRepositorys\" />
   </ItemGroup>
 

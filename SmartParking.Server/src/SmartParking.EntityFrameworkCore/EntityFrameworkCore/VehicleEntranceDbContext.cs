@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SmartParking.Entitys;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -9,6 +10,8 @@ namespace SmartParking.EntityFrameworkCore
     public class SmartParkingDbContext : AbpDbContext<SmartParkingDbContext>
     {
         /* Add DbSet properties for your Aggregate Roots / Entities here. */
+
+        public DbSet<SysUserInfo> SysUserInfos { get; set; }
 
         #region Entities from the modules
 
@@ -47,6 +50,7 @@ namespace SmartParking.EntityFrameworkCore
             //    b.ConfigureByConvention(); //auto configure for the base class props
             //    //...
             //});
+            builder.Entity<SysUserInfo>(b => b.Property(p => p.State).HasDefaultValue(1));
         }
     }
 }
