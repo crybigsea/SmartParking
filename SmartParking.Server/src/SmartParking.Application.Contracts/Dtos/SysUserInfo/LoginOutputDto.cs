@@ -12,5 +12,7 @@ namespace SmartParking.Dtos.SysUserInfo
         public string UserIcon { get; set; }
 
         public string RealName { get; set; }
+
+        public string Token { get; set; }
     }
 }

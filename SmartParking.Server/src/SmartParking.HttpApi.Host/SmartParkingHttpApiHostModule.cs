@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
@@ -6,11 +7,13 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SmartParking.EntityFrameworkCore;
 using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.ExceptionHandling;
@@ -43,6 +46,7 @@ namespace SmartParking
             ConfigureVirtualFileSystem(context);
             ConfigureCors(context, configuration);
             ConfigureSwaggerServices(context, configuration);
+            ConfigureJWT(context, configuration);
 
             PostConfigure<JsonOptions>(options =>
             {
@@ -56,6 +60,30 @@ namespace SmartParking
             });
 
             context.Services.AddHttpClient();
+        }
+
+        private void ConfigureJWT(ServiceConfigurationContext context, IConfiguration configuration)
+        {
+            context.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(jwt => {
+                var key = Encoding.ASCII.GetBytes(configuration["JwtAuth:SecurityKey"]);
+                jwt.RequireHttpsMetadata = false;
+                jwt.SaveToken = true;
+                jwt.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidIssuer = configuration["JwtAuth:Issuer"],
+                    ValidAudience = configuration["JwtAuth:Audience"],
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
         }
 
         private void ConfigureVirtualFileSystem(ServiceConfigurationContext context)
@@ -101,6 +129,27 @@ namespace SmartParking
                     options.SwaggerDoc("v1", new OpenApiInfo { Title = "SmartParking API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
+                    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                    {
+                        Description = "JWTÊÚÈ¨",
+                        Name = "Authorization",
+                        In = ParameterLocation.Header,
+                        Type = SecuritySchemeType.ApiKey
+                    });
+                    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                    {
+                       {
+                            new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference()
+                                {
+                                    Id = "Bearer",
+                                    Type = ReferenceType.SecurityScheme
+                                }
+                            },
+                            Array.Empty<string>()
+                        }
+                    });
                 });
         }
 
@@ -139,6 +188,8 @@ namespace SmartParking
             app.UseCorrelationId();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseCors();
 
             app.UseSwagger();
