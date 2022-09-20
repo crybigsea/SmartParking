@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartParking.Views"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:base="clr-namespace:SmartParking.Base"
         prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -72,6 +73,9 @@
                             <Trigger Property="IsKeyboardFocused" Value="true">
                                 <Setter Property="BorderBrush" TargetName="border" Value="#0b3d90"/>
                             </Trigger>
+                            <DataTrigger Binding="{Binding Path=Password}" Value="">
+                                <Setter Property="Visibility" Value="Visible" TargetName="markText"></Setter>
+                            </DataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -110,7 +114,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -139,9 +143,14 @@
             </Grid.RowDefinitions>
             <TextBlock Text="用户登录" Foreground="#0b3d90" FontSize="13" Margin="0,10" FontWeight="Normal"></TextBlock>
             <TextBlock Text="账号" Grid.Row="1" Foreground="#0b3d90" Margin="0,10,0,5" FontWeight="Normal"></TextBlock>
-            <TextBox Style="{DynamicResource UserNameTextBoxStyle}" Grid.Row="2" Height="26"></TextBox>
+            <TextBox Grid.Row="2" Height="26"
+                     Style="{DynamicResource UserNameTextBoxStyle}"
+                     Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock Text="密码" Grid.Row="3" Foreground="#0b3d90" FontWeight="Normal" Margin="0,10,0,5"></TextBlock>
-            <PasswordBox Style="{DynamicResource PasswordBoxStyle}" Grid.Row="4" Height="26"></PasswordBox>
+            <PasswordBox Grid.Row="4" Height="26"
+                         Style="{DynamicResource PasswordBoxStyle}"
+                         base:PasswordHelper.Attach="1"
+                         base:PasswordHelper.Password="{Binding Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></PasswordBox>
             <Button Style="{DynamicResource LoginButtonTemplate}" Grid.Row="5" Content="登录" Foreground="White" Height="28" Margin="0,10,0,5" FontWeight="Normal"></Button>
             <CheckBox Grid.Row="6" Content="记住密码" Foreground="#BBB" VerticalContentAlignment="Center"
                       VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="11"></CheckBox>
