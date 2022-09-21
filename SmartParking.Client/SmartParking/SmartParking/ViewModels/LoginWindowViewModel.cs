@@ -43,6 +43,21 @@ namespace SmartParking.ViewModels
             set { SetProperty(ref errorMesage, value); }
         }
 
+        private bool isLoading;
+
+        public bool IsLoading
+        {
+            get { return isLoading; }
+            set { SetProperty(ref isLoading, value); }
+        }
+
+        private string loadingMessage;
+
+        public string LoadingMessage
+        {
+            get { return loadingMessage; }
+            set { SetProperty(ref loadingMessage, value); }
+        }
 
         public ICommand LoginCommand { get; set; }
         public LoginWindowViewModel(ILoginService loginService)
@@ -62,6 +77,8 @@ namespace SmartParking.ViewModels
                         this.ErrorMessage = "请输入密码";
                         return;
                     }
+                    LoadingMessage = "正在登录....";
+                    IsLoading = true;
                     var loginResult = await _loginService.Post(new Client.Dtos.SysUserInfo.LoginDto
                     {
                         UserName = UserName,
@@ -80,6 +97,10 @@ namespace SmartParking.ViewModels
                 catch (Exception ex)
                 {
 
+                }
+                finally
+                {
+                    IsLoading = false;
                 }
             });
         }
