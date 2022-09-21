@@ -1,5 +1,7 @@
 ﻿using Prism.Ioc;
 using Prism.Unity;
+using Refit;
+using SmartParking.Client;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Unity;
 
 namespace SmartParking
 {
@@ -29,6 +32,7 @@ namespace SmartParking
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            Container.GetContainer().RegisterInstance(RestService.For<ILoginService>("http://localhost:4439/api/app"));
         }
     }
 }

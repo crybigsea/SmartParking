@@ -151,7 +151,9 @@
                          Style="{DynamicResource PasswordBoxStyle}"
                          base:PasswordHelper.Attach="1"
                          base:PasswordHelper.Password="{Binding Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></PasswordBox>
-            <Button Style="{DynamicResource LoginButtonTemplate}" Grid.Row="5" Content="登录" Foreground="White" Height="28" Margin="0,10,0,5" FontWeight="Normal"></Button>
+            <Button Grid.Row="5" Content="登录" Foreground="White" Height="28" Margin="0,10,0,5" FontWeight="Normal"
+                    Style="{DynamicResource LoginButtonTemplate}"
+                    Command="{Binding LoginCommand}"></Button>
             <CheckBox Grid.Row="6" Content="记住密码" Foreground="#BBB" VerticalContentAlignment="Center"
                       VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="11"></CheckBox>
             <TextBlock Grid.Row="6" HorizontalAlignment="Right">

@@ -9,10 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SmartParking.Assets\SmartParking.Assets.csproj" />
+    <ProjectReference Include="..\SmartParking.Client\SmartParking.Client.csproj" />
   </ItemGroup>
 
 </Project>
