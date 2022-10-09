@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartParking.Entitys;
+using System.Globalization;
+using System.Linq;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -54,6 +57,10 @@ namespace SmartParking.EntityFrameworkCore
             //});
             builder.Entity<SysUserInfo>(b => b.Property(p => p.State).HasDefaultValue(1));
             builder.Entity<SysMenu>(b => b.Property(p => p.State).HasDefaultValue(1));
+            builder.Entity<SysMenu>().Property(p => p.MenuIcon).HasConversion(new ValueConverter<string, string>(
+                v => string.IsNullOrEmpty(v) ? null : ((int)v.ToArray()[0]).ToString("x"),
+                v => string.IsNullOrEmpty(v) ? "" : ((char)int.Parse(v, NumberStyles.HexNumber)).ToString()
+            ));
         }
     }
 }

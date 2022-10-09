@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\iconfont.ttf" />
     <None Remove="Images\login_back.jpg" />
     <None Remove="Images\Logo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\iconfont.ttf" />
     <Resource Include="Images\login_back.jpg" />
     <Resource Include="Images\Logo.png" />
   </ItemGroup>

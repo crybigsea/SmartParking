@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SmartParking.Assets\SmartParking.Assets.csproj" />
     <ProjectReference Include="..\SmartParking.Client\SmartParking.Client.csproj" />
   </ItemGroup>
 
