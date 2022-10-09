@@ -13,6 +13,8 @@ namespace SmartParking.EntityFrameworkCore
 
         public DbSet<SysUserInfo> SysUserInfos { get; set; }
 
+        public DbSet<SysMenu> SysMenus { get; set; }
+
         #region Entities from the modules
 
         /* Notice: We only implemented IIdentityDbContext and ITenantManagementDbContext

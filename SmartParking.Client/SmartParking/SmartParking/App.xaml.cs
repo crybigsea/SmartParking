@@ -32,7 +32,9 @@ namespace SmartParking
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Container.GetContainer().RegisterInstance(RestService.For<ILoginService>("http://localhost:4439/api/app"));
+            string baseAddress = "http://localhost:4439/api/app";
+            Container.GetContainer().RegisterInstance(RestService.For<ILoginService>(baseAddress));
+            Container.GetContainer().RegisterInstance(RestService.For<IMenuService>(baseAddress));
         }
 
         protected override IModuleCatalog CreateModuleCatalog()
