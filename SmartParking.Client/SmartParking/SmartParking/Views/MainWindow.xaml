@@ -4,9 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartParking"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" Background="Transparent"
+        FontFamily="Microsoft YaHei" FontSize="13" FontWeight="ExtraLight" Foreground="#333"
+        Title="美好智慧停车系统" Height="500" Width="800">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="-1" ResizeBorderThickness="4"/>
+    </WindowChrome.WindowChrome>
+    <DockPanel>
+        <Grid DockPanel.Dock="Left" Width="150" Background="#0b3d90">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <Image Source="pack://application:,,,/SmartParking.Assets;component/Images/Logo.png" Width="50" Margin="0,6,0,0"/>
+                <TextBlock Text="Smart Parking" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,5,0,0"></TextBlock>
+            </StackPanel>
+            <ContentControl Grid.Row="1" prism:RegionManager.RegionName="LeftMenuTreeRegion"></ContentControl>
+        </Grid>
+        <ContentControl prism:RegionManager.RegionName="MainHeaderRegion" DockPanel.Dock="Top" Height="70"></ContentControl>
+        <TabControl prism:RegionManager.RegionName="MainViewRegion"></TabControl>
+    </DockPanel>
 </Window>

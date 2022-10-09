@@ -51,6 +51,7 @@ namespace SmartParking.EntityFrameworkCore
             //    //...
             //});
             builder.Entity<SysUserInfo>(b => b.Property(p => p.State).HasDefaultValue(1));
+            builder.Entity<SysMenu>(b => b.Property(p => p.State).HasDefaultValue(1));
         }
     }
 }

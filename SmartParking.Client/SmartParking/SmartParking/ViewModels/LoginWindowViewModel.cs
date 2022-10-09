@@ -19,7 +19,7 @@ namespace SmartParking.ViewModels
     {
         private readonly ILoginService _loginService;
 
-        private string userName = "";
+        private string userName = "admin";
 
         public string UserName
         {
@@ -27,7 +27,7 @@ namespace SmartParking.ViewModels
             set { SetProperty(ref userName, value); }
         }
 
-        private string password = "";
+        private string password = "123456";
 
         public string Password
         {
