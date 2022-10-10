@@ -15,7 +15,7 @@
                 <ResourceDictionary>
                     <ControlTemplate x:Key="ArrowButtonTemplate" TargetType="ToggleButton">
                         <Grid Background="Transparent">
-                            <TextBlock FontFamily="{StaticResource IconFont}" Text="&#xe62f;" Foreground="White"
+                            <TextBlock FontFamily="{StaticResource IconFont}" Text="&#xe62f;"
                                        VerticalAlignment="Center" HorizontalAlignment="Center"
                                        RenderTransformOrigin="0.5,0.5"
                                        Name="arrow"></TextBlock>
@@ -54,44 +54,44 @@
                                     <RowDefinition Height="Auto" MinHeight="36"/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
+
+                                <Grid.InputBindings>
+                                    <MouseBinding MouseAction="LeftDoubleClick"
+                                                  Command="{Binding OpenViewCommand}"
+                                                  CommandParameter="{Binding}"/>
+                                </Grid.InputBindings>
+                                
                                 <Border x:Name="Bd" Background="{TemplateBinding Background}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}" 
-                                        Padding="{TemplateBinding Padding}"
+                                        Padding="{TemplateBinding Padding}" Grid.ColumnSpan="2"
                                         SnapsToDevicePixels="true">
                                     <ContentPresenter x:Name="PART_Header" ContentSource="Header"
                                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                       VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                 </Border>
-                                <ToggleButton x:Name="Expander" Grid.Column="1" ClickMode="Press" 
+                                <ToggleButton x:Name="Expander" Grid.Column="1" ClickMode="Press"
                                               Template="{StaticResource ArrowButtonTemplate}"
                                               IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"/>
                                 <ItemsPresenter x:Name="ItemsHost" Grid.ColumnSpan="2" Grid.Row="1"/>
                             </Grid>
-                            <!--<ControlTemplate.Triggers>
+                            <ControlTemplate.Triggers>
                                 <Trigger Property="IsExpanded" Value="false">
                                     <Setter Property="Visibility" TargetName="ItemsHost" Value="Collapsed"/>
                                 </Trigger>
                                 <Trigger Property="HasItems" Value="false">
                                     <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
                                 </Trigger>
+                                <Trigger Property="IsSelected" Value="False">
+                                    <Setter Property="Foreground" TargetName="Expander" Value="white"/>
+                                </Trigger>
                                 <Trigger Property="IsSelected" Value="true">
-                                    <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                                    <Setter Property="Background" TargetName="Bd" Value="#F7F9FA"/>
+                                    <Setter Property="Foreground" Value="#0b3d90"/>
+                                    <Setter Property="Foreground" TargetName="Expander" Value="#0b3d90"/>
                                 </Trigger>
-                                <MultiTrigger>
-                                    <MultiTrigger.Conditions>
-                                        <Condition Property="IsSelected" Value="true"/>
-                                        <Condition Property="IsSelectionActive" Value="false"/>
-                                    </MultiTrigger.Conditions>
-                                    <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}}"/>
-                                </MultiTrigger>
-                                <Trigger Property="IsEnabled" Value="false">
-                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>-->
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>

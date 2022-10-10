@@ -1,4 +1,5 @@
-﻿using SmartParking.Client;
+﻿using Prism.Regions;
+using SmartParking.Client;
 using SmartParking.Client.Dtos.SysMenu;
 using SmartParking.SystemModule.Models;
 using System;
@@ -17,10 +18,12 @@ namespace SmartParking.SystemModule.ViewModels
 
         public ObservableCollection<TreeMenuModel> Menus { get; set; } = new ObservableCollection<TreeMenuModel>();
         private IList<SysMenuDto> allMenus { get; set; }
+        private IRegionManager _regionManager { get; set; }
 
-        public TreeMenuViewModel(IMenuService menuService)
+        public TreeMenuViewModel(IMenuService menuService, IRegionManager regionManager)
         {
             _menuService = menuService;
+            _regionManager = regionManager;
 
             allMenus = _menuService.GetAllMenus().GetAwaiter().GetResult().items;
             FillMenus(Menus, null);
@@ -34,7 +37,7 @@ namespace SmartParking.SystemModule.ViewModels
             {
                 foreach (var item in child)
                 {
-                    var menu = new TreeMenuModel
+                    var menu = new TreeMenuModel(_regionManager)
                     {
                         MenuIcon = item.MenuIcon,
                         MenuName = item.MenuName,

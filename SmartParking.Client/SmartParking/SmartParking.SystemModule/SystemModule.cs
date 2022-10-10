@@ -21,6 +21,8 @@ namespace SmartParking.SystemModule
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<TreeMenuView>();
+            containerRegistry.RegisterForNavigation<FileUploadView>();
+            containerRegistry.RegisterForNavigation<MenuView>();
         }
     }
 }
