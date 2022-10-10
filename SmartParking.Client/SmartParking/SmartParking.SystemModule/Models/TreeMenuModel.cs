@@ -19,6 +19,14 @@ namespace SmartParking.SystemModule.Models
 
         public string MenuIcon { get; set; }
 
+        private bool _isExpanded;
+        public bool IsExpanded
+        {
+            get { return _isExpanded; }
+            set { SetProperty(ref _isExpanded, value); }
+        }
+
+
         public ObservableCollection<TreeMenuModel> Children { get; set; }
 
         public ICommand OpenViewCommand
@@ -29,6 +37,8 @@ namespace SmartParking.SystemModule.Models
                 {
                     if ((menu.Children == null || !menu.Children.Any()) && !string.IsNullOrEmpty(menu.ViewName))
                         _regionManager.RequestNavigate("MainViewRegion", menu.ViewName);
+                    else
+                        menu.IsExpanded = !menu.IsExpanded;
                 });
             }
         }
