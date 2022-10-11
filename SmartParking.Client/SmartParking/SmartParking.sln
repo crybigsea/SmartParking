@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParking.Assets", "Smar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParking.Client", "SmartParking.Client\SmartParking.Client.csproj", "{35C012B5-65DC-485A-AC60-4C41CEEDD5E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartParking.SystemModule", "SmartParking.SystemModule\SmartParking.SystemModule.csproj", "{218BDE0E-1818-48EC-AF25-533FA6560D7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParking.SystemModule", "SmartParking.SystemModule\SmartParking.SystemModule.csproj", "{218BDE0E-1818-48EC-AF25-533FA6560D7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -8,5 +8,8 @@
     <Page Update="Styles\ButtonStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\TextBoxStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

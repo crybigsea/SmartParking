@@ -6,7 +6,50 @@
              xmlns:local="clr-namespace:SmartParking.SystemModule.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/BaseResources.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/ButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/TextBoxStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
-        <TextBlock Text="FileUploadView"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0,0,0,1" BorderBrush="#DDD"></Border>
+        <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" Style="{DynamicResource SearchTextBox}"></TextBox>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Content="刷新" Template="{DynamicResource NormalButtonTemplate}" Margin="0,5,5,0" Height="28" Width="50"></Button>
+            <Button Content="上传" Template="{DynamicResource NormalButtonTemplate}" Margin="0,5,5,0" Height="28" Width="50"></Button>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border Background="#F7F9FA"/>
+            <TextBlock Text="序号" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="文件名称" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="上传时间" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="操作" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <ItemsControl Grid.Column="1">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="测试"></TextBlock>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
     </Grid>
 </UserControl>
