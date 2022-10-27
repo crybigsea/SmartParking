@@ -10,6 +10,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using Unity;
 
 namespace SmartParking
@@ -32,9 +33,12 @@ namespace SmartParking
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register(typeof(Dispatcher), obj => Application.Current.Dispatcher);
+
             string baseAddress = "http://localhost:4439/api/app";
             Container.GetContainer().RegisterInstance(RestService.For<ILoginService>(baseAddress));
             Container.GetContainer().RegisterInstance(RestService.For<IMenuService>(baseAddress));
+            Container.GetContainer().RegisterInstance(RestService.For<IUpdateFileService>(baseAddress));
         }
 
         protected override IModuleCatalog CreateModuleCatalog()

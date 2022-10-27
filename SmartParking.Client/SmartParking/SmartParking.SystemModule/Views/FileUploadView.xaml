@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartParking.SystemModule.Views"
+             xmlns:prims="http://prismlibrary.com/"
+             prims:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -21,9 +23,12 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Border BorderThickness="0,0,0,1" BorderBrush="#DDD"></Border>
-        <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" Style="{DynamicResource SearchTextBox}"></TextBox>
+        <TextBox Text="{Binding Keyword,Mode=TwoWay}"
+            HorizontalAlignment="Left" VerticalAlignment="Center" Width="300"
+                Style="{DynamicResource SearchTextBox}"></TextBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button Content="刷新" Template="{DynamicResource NormalButtonTemplate}" Margin="0,5,5,0" Height="28" Width="50"></Button>
+            <Button Content="刷新" Command="{Binding RefreshCommand}" Template="{DynamicResource NormalButtonTemplate}"
+                    Margin="0,5,5,0" Height="28" Width="50"></Button>
             <Button Content="上传" Template="{DynamicResource NormalButtonTemplate}" Margin="0,5,5,0" Height="28" Width="50"></Button>
         </StackPanel>
 
@@ -41,12 +46,23 @@
             <Border Background="#F7F9FA"/>
             <TextBlock Text="序号" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
             <TextBlock Text="文件名称" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Text="上传时间" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Text="操作" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <ItemsControl Grid.Column="1">
+            <TextBlock Text="MD5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="路径" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <ItemsControl ItemsSource="{Binding updateFileModels}" Grid.Row="1" Grid.ColumnSpan="4">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="测试"></TextBlock>
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Index}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding FileName}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding FileMD5}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding FilePath}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

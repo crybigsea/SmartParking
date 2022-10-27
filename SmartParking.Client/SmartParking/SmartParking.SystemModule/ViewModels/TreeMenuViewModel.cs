@@ -1,4 +1,6 @@
-﻿using Prism.Regions;
+﻿using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Regions;
 using SmartParking.Client;
 using SmartParking.Client.Dtos.SysMenu;
 using SmartParking.SystemModule.Models;
@@ -9,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SmartParking.SystemModule.ViewModels
 {

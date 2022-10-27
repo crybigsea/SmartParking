@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SmartParking.Dtos.SysMenu;
+using SmartParking.Dtos.SysUpdateInfo;
 using SmartParking.Dtos.SysUserInfo;
 using SmartParking.Entitys;
 
@@ -14,6 +15,7 @@ namespace SmartParking
              * into multiple profile classes for a better organization. */
             CreateMap<SysUserInfo, LoginOutputDto>();
             CreateMap<SysMenu, SysMenuDto>();
+            CreateMap<SysUpdateFile, SysUpdateFileDto>();
         }
     }
 }
