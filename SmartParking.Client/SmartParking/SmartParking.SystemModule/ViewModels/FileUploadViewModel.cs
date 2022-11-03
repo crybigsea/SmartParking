@@ -1,5 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 using SmartParking.Client;
 using SmartParking.Client.Dtos.SysUpdateInfo;
 using SmartParking.SystemModule.Models;
@@ -19,6 +20,7 @@ namespace SmartParking.SystemModule.ViewModels
     {
         private readonly IUpdateFileService _updateFileService;
         private readonly IUnityContainer _unityContainer;
+        private readonly IDialogService _dialogService;
 
         //public ObservableCollection<UpdateFileModel> updateFileModels = new ObservableCollection<UpdateFileModel>();//不能是字段，必须是属性
         public ObservableCollection<UpdateFileModel> updateFileModels { get; set; } = new ObservableCollection<UpdateFileModel>();
@@ -31,11 +33,13 @@ namespace SmartParking.SystemModule.ViewModels
         }
 
         public ICommand RefreshCommand { get; set; }
+        public ICommand AddFileCommand { get; set; }
 
-        public FileUploadViewModel(IUpdateFileService updateFileService, IUnityContainer unityContainer)
+        public FileUploadViewModel(IUpdateFileService updateFileService, IUnityContainer unityContainer, IDialogService dialogService)
         {
             _updateFileService = updateFileService;
             _unityContainer = unityContainer;
+            _dialogService = dialogService;
             RefreshCommand = new DelegateCommand(() =>
             {
                 Task.Run(async () =>
@@ -63,6 +67,10 @@ namespace SmartParking.SystemModule.ViewModels
                         }
                     });
                 });
+            });
+            AddFileCommand = new DelegateCommand(() =>
+            {
+                _dialogService.ShowDialog("AddFileDialog");
             });
         }
     }

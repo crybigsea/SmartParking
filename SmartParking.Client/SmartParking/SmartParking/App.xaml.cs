@@ -3,6 +3,7 @@ using Prism.Modularity;
 using Prism.Unity;
 using Refit;
 using SmartParking.Client;
+using SmartParking.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -34,6 +35,8 @@ namespace SmartParking
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register(typeof(Dispatcher), obj => Application.Current.Dispatcher);
+
+            containerRegistry.RegisterDialogWindow<DialogWindow>();
 
             string baseAddress = "http://localhost:4439/api/app";
             Container.GetContainer().RegisterInstance(RestService.For<ILoginService>(baseAddress));
