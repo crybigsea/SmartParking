@@ -16,7 +16,9 @@ namespace SmartParking.SystemModule.Models
         public string FileMD5 { get; set; }
 
         public string FilePath { get; set; }
+        public string FullPath { get; set; }
 
         public int Length { get; set; }
+        public string Status { get; set; }
     }
 }

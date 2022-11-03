@@ -1,9 +1,15 @@
-﻿using Prism.Services.Dialogs;
+﻿using Microsoft.Win32;
+using Prism.Commands;
+using Prism.Services.Dialogs;
+using SmartParking.SystemModule.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SmartParking.SystemModule.ViewModels
 {
@@ -21,6 +27,38 @@ namespace SmartParking.SystemModule.ViewModels
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
+        }
+
+        public ObservableCollection<UpdateFileModel> FileList { get; set; } = new ObservableCollection<UpdateFileModel>();
+
+        public ICommand SelectFileCommand { get; set; }
+
+        public AddFileDialogViewModel()
+        {
+            SelectFileCommand = new DelegateCommand(() =>
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Multiselect = true;
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    FileList.Clear();
+                    if (openFileDialog.FileNames != null && openFileDialog.FileNames.Any())
+                    {
+                        int index = 0;
+                        foreach (var file in openFileDialog.FileNames)
+                        {
+                            index++;
+                            FileList.Add(new UpdateFileModel
+                            {
+                                Index = index,
+                                FullPath = file,
+                                FileName = new FileInfo(file).Name,
+                                Status = "待上传"
+                            });
+                        }
+                    }
+                }
+            });
         }
     }
 }

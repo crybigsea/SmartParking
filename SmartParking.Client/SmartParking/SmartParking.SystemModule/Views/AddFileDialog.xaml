@@ -7,6 +7,9 @@
              xmlns:prism="http://prismlibrary.com/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/ButtonStyle.xaml"></ResourceDictionary>
+    </UserControl.Resources>
     <prism:Dialog.WindowStyle>
         <Style TargetType="Window">
             <Setter Property="Height" Value="650"></Setter>
@@ -14,6 +17,56 @@
         </Style>
     </prism:Dialog.WindowStyle>
     <Grid>
-        <TextBlock Text="AddFileDialog"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="文件上传" FontSize="20" VerticalAlignment="Center" Foreground="#888" Margin="10,0"></TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5,0">
+            <Button Content="选择文件" Margin="5,0" Width="100" Height="30"
+                    Command="{Binding SelectFileCommand}"
+                    Template="{StaticResource PrimaryButtonTemplate}"></Button>
+            <Button Content="开始上传" Margin="5,0" Width="100" Height="30" Template="{StaticResource NormalButtonTemplate}"></Button>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border Background="White"></Border>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="序号" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="文件名" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"></TextBlock>
+                <TextBlock Text="文件夹" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"></TextBlock>
+                <TextBlock Text="状态" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3"></TextBlock>
+            </Grid>
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding FileList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#cdcdcd" BorderThickness="0,0,0,1" Background="Transparent">
+                            <Grid Height="30">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="80"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Index}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="{Binding FileName}" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"></TextBlock>
+                                <TextBlock Text="{Binding FilePath}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2"></TextBlock>
+                                <TextBlock Text="{Binding Status}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3"></TextBlock>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
     </Grid>
 </UserControl>
