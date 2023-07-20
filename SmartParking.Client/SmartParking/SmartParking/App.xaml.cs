@@ -3,13 +3,9 @@ using Prism.Modularity;
 using Prism.Unity;
 using Refit;
 using SmartParking.Client;
+using SmartParking.Common;
 using SmartParking.Views;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Unity;
@@ -37,6 +33,7 @@ namespace SmartParking
             containerRegistry.Register(typeof(Dispatcher), obj => Application.Current.Dispatcher);
 
             containerRegistry.RegisterDialogWindow<DialogWindow>();
+            Container.GetContainer().RegisterSingleton<GlobalInfo>();
 
             string baseAddress = "http://localhost:4439/api/app";
             Container.GetContainer().RegisterInstance(RestService.For<ILoginService>(baseAddress));

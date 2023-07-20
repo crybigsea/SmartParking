@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParking.Client", "Smar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParking.SystemModule", "SmartParking.SystemModule\SmartParking.SystemModule.csproj", "{218BDE0E-1818-48EC-AF25-533FA6560D7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartParking.Common", "SmartParking.Common\SmartParking.Common.csproj", "{EBBC0C18-29D2-4F27-A7A0-75E20FE4071F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{218BDE0E-1818-48EC-AF25-533FA6560D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{218BDE0E-1818-48EC-AF25-533FA6560D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{218BDE0E-1818-48EC-AF25-533FA6560D7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBBC0C18-29D2-4F27-A7A0-75E20FE4071F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBBC0C18-29D2-4F27-A7A0-75E20FE4071F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBBC0C18-29D2-4F27-A7A0-75E20FE4071F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBBC0C18-29D2-4F27-A7A0-75E20FE4071F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

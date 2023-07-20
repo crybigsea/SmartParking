@@ -3,13 +3,9 @@ using Prism.Mvvm;
 using Refit;
 using SmartParking.Client;
 using SmartParking.Client.Dtos;
+using SmartParking.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -18,6 +14,7 @@ namespace SmartParking.ViewModels
     public class LoginWindowViewModel : BindableBase
     {
         private readonly ILoginService _loginService;
+        private readonly GlobalInfo _globalInfo;
 
         private string userName = "admin";
 
@@ -60,9 +57,10 @@ namespace SmartParking.ViewModels
         }
 
         public ICommand LoginCommand { get; set; }
-        public LoginWindowViewModel(ILoginService loginService)
+        public LoginWindowViewModel(ILoginService loginService, GlobalInfo globalInfo)
         {
             _loginService = loginService;
+            _globalInfo = globalInfo;
             LoginCommand = new DelegateCommand<object>(async obj =>
             {
                 try
@@ -84,6 +82,7 @@ namespace SmartParking.ViewModels
                         UserName = UserName,
                         Password = Password
                     });
+                    _globalInfo.LoginUserInfo = loginResult;
                     (obj as Window).DialogResult = true;
                 }
                 catch (ApiException apiEx)

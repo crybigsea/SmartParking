@@ -12,6 +12,6 @@ namespace SmartParking.Client
     public interface IMenuService
     {
         [Get("/menu")]
-        Task<ApiListResult<SysMenuDto>> GetAllMenus();
+        Task<ApiListResult<SysMenuDto>> GetAllMenus([Header("Authorization")] string token);
     }
 }

@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using Prism.Regions;
 using SmartParking.Client;
 using SmartParking.Client.Dtos.SysMenu;
+using SmartParking.Common;
 using SmartParking.SystemModule.Models;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,19 @@ namespace SmartParking.SystemModule.ViewModels
     public class TreeMenuViewModel
     {
         private readonly IMenuService _menuService;
+        private readonly GlobalInfo _globalInfo;
 
         public ObservableCollection<TreeMenuModel> Menus { get; set; } = new ObservableCollection<TreeMenuModel>();
         private IList<SysMenuDto> allMenus { get; set; }
         private IRegionManager _regionManager { get; set; }
 
-        public TreeMenuViewModel(IMenuService menuService, IRegionManager regionManager)
+        public TreeMenuViewModel(IMenuService menuService, IRegionManager regionManager, GlobalInfo globalInfo)
         {
             _menuService = menuService;
             _regionManager = regionManager;
+            _globalInfo = globalInfo;
 
-            allMenus = _menuService.GetAllMenus().GetAwaiter().GetResult().items;
+            allMenus = _menuService.GetAllMenus($"Bearer {_globalInfo.LoginUserInfo?.Token}").GetAwaiter().GetResult().items;
             FillMenus(Menus, null);
 
         }

@@ -15,6 +15,11 @@
   <ItemGroup>
     <ProjectReference Include="..\SmartParking.Assets\SmartParking.Assets.csproj" />
     <ProjectReference Include="..\SmartParking.Client\SmartParking.Client.csproj" />
+    <ProjectReference Include="..\SmartParking.Common\SmartParking.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

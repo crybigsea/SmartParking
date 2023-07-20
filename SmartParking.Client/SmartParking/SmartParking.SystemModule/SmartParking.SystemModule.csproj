@@ -13,10 +13,11 @@
   <ItemGroup>
     <ProjectReference Include="..\SmartParking.Assets\SmartParking.Assets.csproj" />
     <ProjectReference Include="..\SmartParking.Client\SmartParking.Client.csproj" />
+    <ProjectReference Include="..\SmartParking.Common\SmartParking.Common.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy $(TargetPath) $(SolutionDir)SmartParking\bin\Debug\net6.0-windows\Modules\$(TargetFileName) /i /s /y" />
+    <Exec Command="echo f | xcopy $(TargetPath) $(SolutionDir)SmartParking\bin\Debug\net6.0-windows\Modules\$(TargetFileName) /i /s /y" />
   </Target>
 
 </Project>
