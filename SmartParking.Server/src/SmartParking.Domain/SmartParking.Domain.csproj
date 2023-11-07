@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="IRepositorys\**" />
+    <EmbeddedResource Remove="IRepositorys\**" />
+    <None Remove="IRepositorys\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SmartParking.Application.Contracts\SmartParking.Application.Contracts.csproj" />
     <ProjectReference Include="..\SmartParking.Domain.Shared\SmartParking.Domain.Shared.csproj" />
   </ItemGroup>
@@ -21,10 +27,6 @@
     <PackageReference Include="Volo.Abp.AuditLogging.Domain" Version="5.3.4" />
     <PackageReference Include="Volo.Abp.Ddd.Domain" Version="5.3.4" />
     <PackageReference Include="Volo.Abp.Validation" Version="5.3.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="IRepositorys\" />
   </ItemGroup>
 
 </Project>

@@ -13,7 +13,7 @@ namespace SmartParking.BackgroundWorker
     {
         public TestWorker(AbpAsyncTimer timer, IServiceScopeFactory serviceScopeFactory) : base(timer, serviceScopeFactory)
         {
-            Timer.Period = 60000;
+            Timer.Period = 1000 * 60 * 60 * 24;
         }
 
         protected override async Task DoWorkAsync(PeriodicBackgroundWorkerContext workerContext)
