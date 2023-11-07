@@ -12,6 +12,64 @@
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="-1" ResizeBorderThickness="4"/>
     </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <Style TargetType="TabItem">
+            <Setter Property="Foreground" Value="#444"></Setter>
+            <Setter Property="Background" Value="#EEE"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border CornerRadius="5" Margin="2,0" Background="{TemplateBinding Background}">
+                            <Grid Height="30">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding DataContext.PageTitle}" VerticalAlignment="Center" Margin="10,5,5,5"></TextBlock>
+                                <Button Grid.Column="1" Margin="0,0,5,0" Name="btnCloseTab"
+                                        Visibility="Hidden" 
+                                        Command="{Binding DataContext.CloseCommand}"
+                                        CommandParameter="{Binding DataContext.NavUri}">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Border Name="btnCloseTab_Back" Background="Transparent" CornerRadius="3"
+                                                    VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <Path VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Stroke="Black" StrokeThickness="1" Data="M0,0 L10,10 M10,0 L0,10" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Red" TargetName="btnCloseTab_Back"></Setter>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Visibility" Value="Visible" TargetName="btnCloseTab"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Visibility" Value="Visible" TargetName="btnCloseTab"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#CDCDCD"></Setter>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="#0b3d90"></Setter>
+                    <Setter Property="Background" Value="#FF0ABEFF"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <DockPanel>
         <Grid DockPanel.Dock="Left" Width="150" Background="#0b3d90">
             <Grid.RowDefinitions>
