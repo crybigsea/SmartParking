@@ -29,7 +29,7 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <Button Content="刷新" Command="{Binding RefreshCommand}" Template="{DynamicResource NormalButtonTemplate}"
                     Margin="0,5,5,0" Height="28" Width="50"></Button>
-            <Button Content="上传" Command="{Binding AddFileCommand}" Template="{DynamicResource NormalButtonTemplate}"
+            <Button Content="上传" Command="{Binding AddCommand}" Template="{DynamicResource NormalButtonTemplate}"
                     Margin="0,5,5,0" Height="28" Width="50"></Button>
         </StackPanel>
 
