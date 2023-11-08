@@ -8,6 +8,19 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/BaseResources.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/ButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/TextBoxStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/ToolBarTemplate.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.Template>
+        <StaticResource ResourceKey="ToolBarTemplate"></StaticResource>
+    </UserControl.Template>
     <Grid>
         <TextBlock Text="MenuView"></TextBlock>
     </Grid>

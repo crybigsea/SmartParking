@@ -14,59 +14,47 @@
                 <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/BaseResources.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/ButtonStyle.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/TextBoxStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/SmartParking.assets;component/Styles/ToolBarTemplate.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
+    <UserControl.Template>
+        <StaticResource ResourceKey="ToolBarTemplate"></StaticResource>
+    </UserControl.Template>
+
+    <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderThickness="0,0,0,1" BorderBrush="#DDD"></Border>
-        <TextBox Text="{Binding Keyword,Mode=TwoWay}"
-            HorizontalAlignment="Left" VerticalAlignment="Center" Width="300"
-                Style="{DynamicResource SearchTextBox}"></TextBox>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button Content="刷新" Command="{Binding RefreshCommand}" Template="{DynamicResource NormalButtonTemplate}"
-                    Margin="0,5,5,0" Height="28" Width="50"></Button>
-            <Button Content="上传" Command="{Binding AddCommand}" Template="{DynamicResource NormalButtonTemplate}"
-                    Margin="0,5,5,0" Height="28" Width="50"></Button>
-        </StackPanel>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Border Background="#F7F9FA"/>
-            <TextBlock Text="序号" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Text="文件名称" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Text="MD5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Text="路径" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <ItemsControl ItemsSource="{Binding updateFileModels}" Grid.Row="1" Grid.ColumnSpan="4">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Background="Transparent">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"></ColumnDefinition>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Index}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock Text="{Binding FileName}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock Text="{Binding FileMD5}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock Text="{Binding FilePath}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Grid>
+        <Border Background="#F7F9FA"/>
+        <TextBlock Text="序号" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="文件名称" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="MD5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="路径" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <ItemsControl ItemsSource="{Binding updateFileModels}" Grid.Row="1" Grid.ColumnSpan="4">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Index}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock Text="{Binding FileName}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock Text="{Binding FileMD5}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock Text="{Binding FilePath}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

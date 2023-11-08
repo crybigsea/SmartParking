@@ -14,6 +14,6 @@ namespace SmartParking.Client
     public interface IUpdateFileService
     {
         [Get("/updateFile")]
-        Task<ApiListResult<SysUpdateFileDto>> GetPagedFiles(SysUpdateFilePagedResultRequestDto input);
+        Task<ApiListResult<SysUpdateFileDto>> GetPagedFiles([Header("Authorization")] string token, SysUpdateFilePagedResultRequestDto input);
     }
 }

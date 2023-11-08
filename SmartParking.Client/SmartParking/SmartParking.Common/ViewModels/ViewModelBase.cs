@@ -15,6 +15,8 @@ namespace SmartParking.Common.ViewModels
 
         public string NavUri { get; set; }
 
+        public string AddButtonText { get; set; } = "新增";
+
 
         private string keyword;
         public string Keyword
@@ -32,7 +34,6 @@ namespace SmartParking.Common.ViewModels
 
         public ViewModelBase(IUnityContainer unityContainer, IRegionManager regionManager)
         {
-            PageTitle = "文件上传";
             _unityContainer = unityContainer;
             _regionManager = regionManager;
             RefreshCommand = new DelegateCommand(Refresh);

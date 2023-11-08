@@ -2,6 +2,7 @@
 using Prism.Services.Dialogs;
 using SmartParking.Client;
 using SmartParking.Client.Dtos.SysUpdateInfo;
+using SmartParking.Common;
 using SmartParking.Common.ViewModels;
 using SmartParking.SystemModule.Models;
 using System.Collections.ObjectModel;
@@ -17,25 +18,29 @@ namespace SmartParking.SystemModule.ViewModels
         private readonly IUnityContainer _unityContainer;
         private readonly IDialogService _dialogService;
         private readonly IRegionManager _regionManager;
+        private readonly GlobalInfo _globalInfo;
 
         //public ObservableCollection<UpdateFileModel> updateFileModels = new ObservableCollection<UpdateFileModel>();//不能是字段，必须是属性
         public ObservableCollection<UpdateFileModel> updateFileModels { get; set; } = new ObservableCollection<UpdateFileModel>();
 
         public FileUploadViewModel(IUpdateFileService updateFileService,
             IUnityContainer unityContainer, IDialogService dialogService,
-            IRegionManager regionManager) : base(unityContainer, regionManager)
+            IRegionManager regionManager, GlobalInfo globalInfo) : base(unityContainer, regionManager)
         {
+            PageTitle = "文件上传";
+            AddButtonText = "上传";
             _updateFileService = updateFileService;
             _unityContainer = unityContainer;
             _dialogService = dialogService;
             _regionManager = regionManager;
+            _globalInfo = globalInfo;
         }
 
         public override void Refresh()
         {
             Task.Run(async () =>
             {
-                var files = (await _updateFileService.GetPagedFiles(new SysUpdateFilePagedResultRequestDto
+                var files = (await _updateFileService.GetPagedFiles($"Bearer {_globalInfo.LoginUserInfo?.Token}", new SysUpdateFilePagedResultRequestDto
                 {
                     Keyword = Keyword,
                     SkipCount = 0,

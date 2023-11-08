@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ControlTemplate TargetType="UserControl" x:Key="ToolBarTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border BorderThickness="0,0,0,1" BorderBrush="#DDD"></Border>
+            <TextBox Text="{Binding Keyword,Mode=TwoWay}"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" Width="300"
+                    Style="{DynamicResource SearchTextBox}"></TextBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Content="刷新" Command="{Binding RefreshCommand}" Template="{DynamicResource NormalButtonTemplate}"
+                        Margin="0,5,5,0" Height="28" Width="50"></Button>
+                <Button Content="{Binding AddButtonText}" Command="{Binding AddCommand}" Template="{DynamicResource NormalButtonTemplate}"
+                        Margin="0,5,5,0" Height="28" Width="50"></Button>
+            </StackPanel>
+
+            <ContentPresenter Grid.Row="1"/>
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>
