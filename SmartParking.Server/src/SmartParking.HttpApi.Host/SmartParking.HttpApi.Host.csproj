@@ -3,20 +3,20 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>SmartParking</RootNamespace>
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
     <UserSecretsId>SmartParking-4681b4fd-151f-4221-84a4-929d86723e4c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="6.0.9" />
-    <PackageReference Include="Volo.Abp.Autofac" Version="5.3.4" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="5.3.4" />
-    <PackageReference Include="Volo.Abp.Swashbuckle" Version="5.3.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="8.0.0" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="7.4.2" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="7.4.2" />
+    <PackageReference Include="Volo.Abp.Swashbuckle" Version="7.4.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +29,11 @@
     <Content Remove="Logs\**" />
     <EmbeddedResource Remove="Logs\**" />
     <None Remove="Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\crybi\.nuget\packages\volo.abp.aspnetcore.serilog\7.4.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Serilog.abppkg.analyze.json" />
+    <Content Remove="C:\Users\crybi\.nuget\packages\volo.abp.aspnetcore.serilog\7.4.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Serilog.abppkg.json" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,20 +3,19 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>SmartParking</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="System.ServiceModel.Duplex" Version="4.10.0" />
-    <PackageReference Include="System.ServiceModel.Http" Version="4.10.0" />
-    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.10.0" />
-    <PackageReference Include="System.ServiceModel.Security" Version="4.10.0" />
-    <PackageReference Include="Volo.Abp.AutoMapper" Version="5.3.4" />
-    <PackageReference Include="Volo.Abp.BackgroundWorkers" Version="5.3.4" />
-    <PackageReference Include="Volo.Abp.Ddd.Application" Version="5.3.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="6.0.0" />
+    <PackageReference Include="System.ServiceModel.Http" Version="6.2.0" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="6.2.0" />
+    <PackageReference Include="System.ServiceModel.Security" Version="6.0.0" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="7.4.2" />
+    <PackageReference Include="Volo.Abp.BackgroundWorkers" Version="7.4.2" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="7.4.2" />
   </ItemGroup>
 
   <ItemGroup>

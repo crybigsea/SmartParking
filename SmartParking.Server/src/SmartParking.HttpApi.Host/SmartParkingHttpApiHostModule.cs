@@ -52,7 +52,10 @@ namespace SmartParking
             {
                 options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             });
-            Configure<AbpJsonOptions>(options => options.DefaultDateTimeFormat = "yyyy-MM-dd HH:mm:ss");
+            Configure<AbpJsonOptions>(options =>
+            {
+                options.OutputDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            });
             Configure<AbpAuditingOptions>(options =>
             {
                 options.IsEnabledForGetRequests = true;
@@ -70,7 +73,8 @@ namespace SmartParking
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(jwt => {
+            .AddJwtBearer(jwt =>
+            {
                 var key = Encoding.ASCII.GetBytes(configuration["JwtAuth:SecurityKey"]);
                 jwt.RequireHttpsMetadata = false;
                 jwt.SaveToken = true;
