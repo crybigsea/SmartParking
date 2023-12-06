@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\crybi\.nuget\packages\volo.abp.aspnetcore.mvc\7.4.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Mvc.abppkg.analyze.json" />
+    <Content Remove="C:\Users\crybi\.nuget\packages\volo.abp.aspnetcore.mvc\7.4.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Mvc.abppkg.json" />
+    <Content Remove="C:\Users\crybi\.nuget\packages\volo.abp.aspnetcore.serilog\7.4.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Serilog.abppkg.analyze.json" />
+    <Content Remove="C:\Users\crybi\.nuget\packages\volo.abp.aspnetcore.serilog\7.4.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Serilog.abppkg.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Elsa" Version="2.13.0" />
+    <PackageReference Include="Elsa.Activities.Console" Version="2.13.0" />
+    <PackageReference Include="Elsa.Activities.Temporal.Quartz" Version="2.13.0" />
+    <PackageReference Include="Elsa.Persistence.EntityFramework.SqlServer" Version="2.13.0" />
+    <PackageReference Include="Elsa.Server.Api" Version="2.13.0" />
+    <PackageReference Include="Elsa.Designer.Components.Web" Version="2.13.0" />
+    <PackageReference Include="Elsa.Activities.Http" Version="2.13.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+    <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="7.4.2" />
+    <PackageReference Include="Volo.Abp.Core" Version="7.4.2" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="7.4.2" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="7.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Workflow.Application.Contracts\Workflow.Application.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

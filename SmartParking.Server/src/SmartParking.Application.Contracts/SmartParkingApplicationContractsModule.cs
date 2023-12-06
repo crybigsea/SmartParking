@@ -1,11 +1,13 @@
 ﻿using Volo.Abp.Modularity;
 using Volo.Abp.ObjectExtending;
+using Workflow.Application.Contracts;
 
 namespace SmartParking
 {
     [DependsOn(
         typeof(SmartParkingDomainSharedModule),
-        typeof(AbpObjectExtendingModule)
+        typeof(AbpObjectExtendingModule),
+        typeof(WorkflowApplicationContractsModule)
     )]
     public class SmartParkingApplicationContractsModule : AbpModule
     {

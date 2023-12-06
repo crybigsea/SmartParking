@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\modules\WorkFlow\WorkFlow\WorkFlow.csproj" />
+    <ProjectReference Include="..\..\modules\Workflow\Workflow\Workflow.HttpApi.Host.csproj" />
     <ProjectReference Include="..\SmartParking.Application\SmartParking.Application.csproj" />
     <ProjectReference Include="..\SmartParking.EntityFrameworkCore\SmartParking.EntityFrameworkCore.csproj" />
   </ItemGroup>

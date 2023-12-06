@@ -1,4 +1,4 @@
-﻿namespace WorkFlow.BuilderExtensions
+﻿namespace Workflow.HttpApi.Host.BuilderExtensions
 {
     public static class WorkflowExtensions
     {

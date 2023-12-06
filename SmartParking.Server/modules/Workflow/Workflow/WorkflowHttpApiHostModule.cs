@@ -2,14 +2,14 @@
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.SqlServer;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.Extensions.Configuration;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.Modularity;
+using Workflow.HttpApi.Host.Activitys;
 
-namespace WorkFlow
+namespace Workflow.HttpApi.Host
 {
-    public class WorkFlowMdoule : AbpModule
+    public class WorkflowHttpApiHostModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
@@ -20,17 +20,16 @@ namespace WorkFlow
 
         private void ConfigureElsa(ServiceConfigurationContext context, IConfiguration configuration)
         {
-            var elsaSection = configuration.GetSection("Elsa");
             context.Services.AddElsa(options =>
             {
                 options
-                    .UseEntityFrameworkPersistence(ef =>
-                        DbContextOptionsBuilderExtensions.UseSqlServer(ef, configuration.GetConnectionString("Default")))
+                    .UseEntityFrameworkPersistence(ef => ef.UseSqlServer(configuration.GetConnectionString("Default")))
                     .AddConsoleActivities()
-                    .AddHttpActivities(elsaSection.GetSection("Server").Bind)
+                    .AddHttpActivities()
                     .AddQuartzTemporalActivities()
                     .AddJavaScriptActivities()
-                    .AddWorkflowsFrom<Startup>();
+                    .AddHttpServices()
+                    .AddActivity<ApproveActivity>();
             });
             context.Services.AddElsaApiEndpoints();
             context.Services.Configure<ApiVersioningOptions>(options =>

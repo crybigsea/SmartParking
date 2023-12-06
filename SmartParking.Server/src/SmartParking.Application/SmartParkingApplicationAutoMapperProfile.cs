@@ -3,6 +3,7 @@ using SmartParking.Dtos.SysMenu;
 using SmartParking.Dtos.SysUpdateInfo;
 using SmartParking.Dtos.SysUserInfo;
 using SmartParking.Entitys;
+using Workflow.Application.Contracts.Dtos;
 
 namespace SmartParking
 {
@@ -16,6 +17,7 @@ namespace SmartParking
             CreateMap<SysUserInfo, LoginOutputDto>();
             CreateMap<SysMenu, SysMenuDto>();
             CreateMap<SysUpdateFile, SysUpdateFileDto>();
+            CreateMap<SysRole, WorkflowRoleDto>().ForMember(d => d.RoleID, options => options.MapFrom(o => o.Id));
         }
     }
 }

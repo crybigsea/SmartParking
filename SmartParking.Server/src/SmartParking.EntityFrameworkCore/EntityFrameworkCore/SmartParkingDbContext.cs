@@ -18,6 +18,8 @@ namespace SmartParking.EntityFrameworkCore
 
         public DbSet<SysRole> SysRoles { get; set; }
 
+        public DbSet<SysRoleUser> SysRoleUsers { get; set; }
+
         public DbSet<SysRoleMenu> SysRoleMenus { get; set; }
 
         public DbSet<SysUserMenu> SysUserMenus { get; set; }

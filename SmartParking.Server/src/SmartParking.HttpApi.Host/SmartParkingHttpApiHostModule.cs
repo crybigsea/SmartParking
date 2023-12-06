@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SmartParking.EntityFrameworkCore;
+using SmartParking.WorkflowService;
 using System;
 using System.IO;
 using System.Linq;
@@ -23,8 +24,9 @@ using Volo.Abp.Json;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.VirtualFileSystem;
-using WorkFlow;
-using WorkFlow.BuilderExtensions;
+using Workflow.Application.Contracts.Services;
+using Workflow.HttpApi.Host;
+using Workflow.HttpApi.Host.BuilderExtensions;
 
 namespace SmartParking
 {
@@ -34,7 +36,7 @@ namespace SmartParking
         typeof(SmartParkingEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpSwashbuckleModule),
-        typeof(WorkFlowMdoule)
+        typeof(WorkflowHttpApiHostModule)
     )]
     public class SmartParkingHttpApiHostModule : AbpModule
     {
@@ -63,6 +65,8 @@ namespace SmartParking
             });
 
             context.Services.AddHttpClient();
+
+            context.Services.AddScoped<IRoleService, RoleService>();
         }
 
         private void ConfigureJWT(ServiceConfigurationContext context, IConfiguration configuration)
