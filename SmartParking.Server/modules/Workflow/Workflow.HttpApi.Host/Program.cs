@@ -1,4 +1,4 @@
-namespace WorkFlow
+namespace Workflow.HttpApi.Host
 {
     public class Program
     {
