@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,9 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using Volo.Abp;
-using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
@@ -26,6 +23,8 @@ using Volo.Abp.Json;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.VirtualFileSystem;
+using WorkFlow;
+using WorkFlow.BuilderExtensions;
 
 namespace SmartParking
 {
@@ -34,7 +33,8 @@ namespace SmartParking
         typeof(SmartParkingApplicationModule),
         typeof(SmartParkingEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpSwashbuckleModule)
+        typeof(AbpSwashbuckleModule),
+        typeof(WorkFlowMdoule)
     )]
     public class SmartParkingHttpApiHostModule : AbpModule
     {
@@ -174,7 +174,8 @@ namespace SmartParking
                         .SetIsOriginAllowedToAllowWildcardSubdomains()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
-                        .AllowCredentials();
+                        .AllowCredentials()
+                        .WithExposedHeaders("Content-Disposition");
                 });
             });
         }
@@ -210,6 +211,7 @@ namespace SmartParking
             app.UseAuditing();
             app.UseAbpSerilogEnrichers();
             app.UseUnitOfWork();
+            app.UseWorkflow();
             app.UseConfiguredEndpoints();
         }
     }

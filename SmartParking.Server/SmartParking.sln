@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{2917
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkFlow", "WorkFlow", "{8044F79A-800A-43A6-BB14-FB3861CF6A95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkFlow", "modules\WorkFlow\WorkFlow\WorkFlow.csproj", "{5C02109A-3F9C-443B-A670-9D159EC0018D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{E6D5BF0E-DE92-4D82-A352-EF04B37CB11C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6D5BF0E-DE92-4D82-A352-EF04B37CB11C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6D5BF0E-DE92-4D82-A352-EF04B37CB11C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C02109A-3F9C-443B-A670-9D159EC0018D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C02109A-3F9C-443B-A670-9D159EC0018D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C02109A-3F9C-443B-A670-9D159EC0018D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C02109A-3F9C-443B-A670-9D159EC0018D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{520659C8-C734-4298-A3DA-B539DB9DFC0B} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{E6D5BF0E-DE92-4D82-A352-EF04B37CB11C} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{8044F79A-800A-43A6-BB14-FB3861CF6A95} = {291773F4-B395-472B-99CE-6BD7A3260F8C}
+		{5C02109A-3F9C-443B-A670-9D159EC0018D} = {8044F79A-800A-43A6-BB14-FB3861CF6A95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
