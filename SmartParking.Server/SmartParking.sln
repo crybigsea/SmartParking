@@ -19,11 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParking.HttpApi.Host",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{291773F4-B395-472B-99CE-6BD7A3260F8C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkFlow", "WorkFlow", "{8044F79A-800A-43A6-BB14-FB3861CF6A95}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow", "Workflow", "{8044F79A-800A-43A6-BB14-FB3861CF6A95}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workflow.HttpApi.Host", "modules\WorkFlow\WorkFlow\Workflow.HttpApi.Host.csproj", "{5C02109A-3F9C-443B-A670-9D159EC0018D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workflow.HttpApi.Host", "modules\Workflow\Workflow.HttpApi.Host\Workflow.HttpApi.Host.csproj", "{5C02109A-3F9C-443B-A670-9D159EC0018D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workflow.Application.Contracts", "Workflow.Application.Contracts\Workflow.Application.Contracts.csproj", "{9B7A18BA-ED56-49FA-90E8-FDD646CDAD1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workflow.Application.Contracts", "modules\Workflow\Workflow.Application.Contracts\Workflow.Application.Contracts.csproj", "{9B7A18BA-ED56-49FA-90E8-FDD646CDAD1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

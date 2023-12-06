@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Workflow.Application.Contracts\Workflow.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Workflow.Application.Contracts\Workflow.Application.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

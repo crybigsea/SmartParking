@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Workflow.Application.Contracts\Workflow.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\modules\Workflow\Workflow.Application.Contracts\Workflow.Application.Contracts.csproj" />
     <ProjectReference Include="..\SmartParking.Domain.Shared\SmartParking.Domain.Shared.csproj" />
   </ItemGroup>
 
