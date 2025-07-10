@@ -1,5 +1,5 @@
-﻿using Prism.Regions;
-using Prism.Services.Dialogs;
+﻿using Prism.Dialogs;
+using Prism.Navigation.Regions;
 using SmartParking.Client;
 using SmartParking.Client.Dtos.SysUpdateInfo;
 using SmartParking.Common;

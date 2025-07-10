@@ -9,7 +9,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SmartParking.EntityFrameworkCore;
-using SmartParking.WorkflowService;
 using System;
 using System.IO;
 using System.Linq;
@@ -24,9 +23,6 @@ using Volo.Abp.Json;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.VirtualFileSystem;
-using Workflow.Application.Contracts.Services;
-using Workflow.HttpApi.Host;
-using Workflow.HttpApi.Host.BuilderExtensions;
 
 namespace SmartParking
 {
@@ -35,8 +31,7 @@ namespace SmartParking
         typeof(SmartParkingApplicationModule),
         typeof(SmartParkingEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpSwashbuckleModule),
-        typeof(WorkflowHttpApiHostModule)
+        typeof(AbpSwashbuckleModule)
     )]
     public class SmartParkingHttpApiHostModule : AbpModule
     {
@@ -65,8 +60,6 @@ namespace SmartParking
             });
 
             context.Services.AddHttpClient();
-
-            context.Services.AddScoped<IRoleService, RoleService>();
         }
 
         private void ConfigureJWT(ServiceConfigurationContext context, IConfiguration configuration)
@@ -158,7 +151,9 @@ namespace SmartParking
                             Array.Empty<string>()
                         }
                     });
-                });
+                    //var curr = AppContext.BaseDirectory;
+                    //options.IncludeXmlComments(curr + "/WebApplication1.xml", true);
+                }).AddApiVersioning();
         }
 
         private void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
@@ -215,7 +210,6 @@ namespace SmartParking
             app.UseAuditing();
             app.UseAbpSerilogEnrichers();
             app.UseUnitOfWork();
-            app.UseWorkflow();
             app.UseConfiguredEndpoints();
         }
     }

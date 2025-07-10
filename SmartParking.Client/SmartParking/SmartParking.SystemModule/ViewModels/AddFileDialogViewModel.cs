@@ -1,14 +1,11 @@
 ﻿using Microsoft.Win32;
 using Prism.Commands;
-using Prism.Services.Dialogs;
+using Prism.Dialogs;
 using SmartParking.SystemModule.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace SmartParking.SystemModule.ViewModels
@@ -32,6 +29,8 @@ namespace SmartParking.SystemModule.ViewModels
         public ObservableCollection<UpdateFileModel> FileList { get; set; } = new ObservableCollection<UpdateFileModel>();
 
         public ICommand SelectFileCommand { get; set; }
+
+        DialogCloseListener IDialogAware.RequestClose => throw new NotImplementedException();
 
         public AddFileDialogViewModel()
         {

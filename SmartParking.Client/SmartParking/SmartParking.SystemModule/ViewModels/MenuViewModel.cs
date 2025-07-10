@@ -1,19 +1,6 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Regions;
-using Prism.Services.Dialogs;
-using SmartParking.Client.Dtos.SysUpdateInfo;
-using SmartParking.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Threading;
-using Unity;
+﻿using Prism.Navigation.Regions;
 using SmartParking.Common.ViewModels;
+using Unity;
 
 namespace SmartParking.SystemModule.ViewModels
 {

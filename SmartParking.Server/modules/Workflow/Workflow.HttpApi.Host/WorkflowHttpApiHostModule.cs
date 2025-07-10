@@ -1,4 +1,5 @@
 ﻿using Elsa;
+using Elsa.Extensions;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.SqlServer;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -23,7 +24,7 @@ namespace Workflow.HttpApi.Host
             context.Services.AddElsa(options =>
             {
                 options
-                    .UseEntityFrameworkPersistence(ef => ef.UseSqlServer(configuration.GetConnectionString("Default")))
+                    .UseEntityFrameworkPersistence(ef => ef.UseSqlServer(configuration.GetConnectionString("Default")), true)
                     .AddConsoleActivities()
                     .AddHttpActivities()
                     .AddQuartzTemporalActivities()

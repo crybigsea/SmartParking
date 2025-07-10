@@ -1,8 +1,4 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Regions;
-using System.Windows.Input;
-using Unity;
+﻿using System.Windows.Input;
 
 namespace SmartParking.Common.ViewModels
 {

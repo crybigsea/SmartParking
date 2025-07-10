@@ -1,4 +1,5 @@
-﻿using Prism.Ioc;
+﻿using Prism.Container.Unity;
+using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
 using Refit;

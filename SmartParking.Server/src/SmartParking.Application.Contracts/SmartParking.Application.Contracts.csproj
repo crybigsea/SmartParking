@@ -3,16 +3,15 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>SmartParking</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="7.4.3" />
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="9.2.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\modules\Workflow\Workflow.Application.Contracts\Workflow.Application.Contracts.csproj" />
     <ProjectReference Include="..\SmartParking.Domain.Shared\SmartParking.Domain.Shared.csproj" />
   </ItemGroup>
 
