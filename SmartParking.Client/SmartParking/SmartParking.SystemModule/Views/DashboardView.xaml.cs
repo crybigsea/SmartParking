@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SmartParking.SystemModule.Views
 {
     /// <summary>
-    /// UserView.xaml 的交互逻辑
+    /// DashboardView.xaml 的交互逻辑
     /// </summary>
-    public partial class UserView : UserControl
+    public partial class DashboardView : UserControl
     {
-        public UserView()
+        public DashboardView()
         {
             InitializeComponent();
         }

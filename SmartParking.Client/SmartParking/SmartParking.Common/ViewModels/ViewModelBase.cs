@@ -9,6 +9,8 @@ namespace SmartParking.Common.ViewModels
 
         public string PageTitle { get; set; }
 
+        public bool CanClose { get; set; } = true;
+
         public string NavUri { get; set; }
 
         public string AddButtonText { get; set; } = "新增";

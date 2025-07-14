@@ -37,6 +37,9 @@
                                                 <Path VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Stroke="Black" StrokeThickness="1" Data="M0,0 L10,10 M10,0 L0,10" />
                                             </Border>
                                             <ControlTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding DataContext.CanClose}" Value="false">
+                                                    <Setter TargetName="btnCloseTab_Back" Property="Visibility" Value="Collapsed"></Setter>
+                                                </DataTrigger>
                                                 <Trigger Property="IsMouseOver" Value="True">
                                                     <Setter Property="Background" Value="Red" TargetName="btnCloseTab_Back"></Setter>
                                                 </Trigger>

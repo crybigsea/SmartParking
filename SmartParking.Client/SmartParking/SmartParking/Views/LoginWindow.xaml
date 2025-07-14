@@ -31,16 +31,16 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type TextBox}">
                                     <Border x:Name="border" BorderBrush="#DDD" BorderThickness="0,0,0,1"
-                                Background="{TemplateBinding Background}"
-                                SnapsToDevicePixels="True">
+                                            Background="{TemplateBinding Background}"
+                                            SnapsToDevicePixels="True">
                                         <Grid>
                                             <TextBlock Text="账号/手机号/邮箱" VerticalAlignment="Center" Foreground="#DDD"
-                                           Name="markText" FontSize="12" Margin="2,0" Visibility="Collapsed"></TextBlock>
+                                                Name="markText" FontSize="12" Margin="2,0" Visibility="Collapsed"></TextBlock>
                                             <ScrollViewer x:Name="PART_ContentHost" Focusable="False"
-                                              HorizontalScrollBarVisibility="Hidden"
-                                              VerticalScrollBarVisibility="Hidden"
-                                              Grid.Column="1"
-                                              VerticalAlignment="Center" MinHeight="20"></ScrollViewer>
+                                                HorizontalScrollBarVisibility="Hidden"
+                                                VerticalScrollBarVisibility="Hidden"
+                                                Grid.Column="1"
+                                                VerticalAlignment="Center" MinHeight="20"></ScrollViewer>
                                         </Grid>
                                     </Border>
                                     <ControlTemplate.Triggers>
@@ -120,7 +120,7 @@
                     <TextBlock Text="欢迎使用" Foreground="#AAFFFFFF" Margin="0,10"></TextBlock>
                     <TextBlock Text="美好智慧停车系统" Foreground="White" FontSize="14"></TextBlock>
                 </StackPanel>
-                <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text=".NET 6" 
+                <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text=".NET 9" 
                        FontSize="8" Foreground="White" Margin="0,8"></TextBlock>
             </Grid>
             <Grid Grid.Column="1" VerticalAlignment="Center" Margin="30,0">

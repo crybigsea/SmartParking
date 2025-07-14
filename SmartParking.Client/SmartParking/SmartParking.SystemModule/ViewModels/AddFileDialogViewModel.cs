@@ -2,7 +2,6 @@
 using Prism.Commands;
 using Prism.Dialogs;
 using SmartParking.SystemModule.Models;
-using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -13,8 +12,6 @@ namespace SmartParking.SystemModule.ViewModels
     internal class AddFileDialogViewModel : IDialogAware
     {
         public string Title => "文件上传";
-
-        public event Action<IDialogResult> RequestClose;
 
         public bool CanCloseDialog() => true;
 
@@ -30,7 +27,7 @@ namespace SmartParking.SystemModule.ViewModels
 
         public ICommand SelectFileCommand { get; set; }
 
-        DialogCloseListener IDialogAware.RequestClose => throw new NotImplementedException();
+        DialogCloseListener IDialogAware.RequestClose { get; }
 
         public AddFileDialogViewModel()
         {
