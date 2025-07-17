@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation.Regions;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -22,6 +23,9 @@ namespace SmartParking.SystemModule.Models
             set { SetProperty(ref _isExpanded, value); }
         }
 
+        public Guid? ParentId { get; set; }
+
+        public bool IsLastChild { get; set; }
 
         public ObservableCollection<TreeMenuModel> Children { get; set; }
 

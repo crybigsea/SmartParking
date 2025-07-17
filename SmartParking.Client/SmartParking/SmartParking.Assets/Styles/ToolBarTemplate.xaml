@@ -17,6 +17,11 @@
                         Margin="0,5,5,0" Height="28" Width="50"></Button>
             </StackPanel>
 
+            <Border CornerRadius="5" Background="White" Grid.Row="1" Margin="5">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Color="Gray" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                </Border.Effect>
+            </Border>
             <ContentPresenter Grid.Row="1"/>
         </Grid>
     </ControlTemplate>

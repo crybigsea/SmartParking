@@ -22,6 +22,99 @@
         <StaticResource ResourceKey="ToolBarTemplate"></StaticResource>
     </UserControl.Template>
     <Grid>
-        <TextBlock Text="MenuView"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="1" BorderBrush="#F7F9FA" VerticalAlignment="Bottom"></Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*" SharedSizeGroup="column1"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="菜单名称" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBlock Text="目标视图" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2"/>
+            <TextBlock Text="图标" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3"/>
+            <TextBlock Text="操作" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4"/>
+        </Grid>
+        <TreeView Grid.Row="1" BorderThickness="0" Background="Transparent" ItemsSource="{Binding Menus}">
+            <TreeView.Resources>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded,Mode=TwoWay}"></Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TreeViewItem">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" MinHeight="30"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Border Height="1" Width="20" VerticalAlignment="Center"
+                                            HorizontalAlignment="Left" BorderBrush="LightGray"
+                                            BorderThickness="1" Name="borderH"></Border>
+
+                                    <Border Width="1" Height="30" VerticalAlignment="Center"
+                                                HorizontalAlignment="Left" BorderBrush="LightGray"
+                                                BorderThickness="1" Name="borderV"></Border>
+
+                                    <ContentPresenter x:Name="PART_Header" ContentSource="Header" />
+                                    <ItemsPresenter x:Name="ItemsHost" Grid.Row="1" Margin="20,0,0,0"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding IsExpanded}" Value="false">
+                                        <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ParentId}" Value="{x:Null}">
+                                        <Setter TargetName="borderV" Property="Visibility" Value="Collapsed"></Setter>
+                                        <Setter TargetName="borderH" Property="Visibility" Value="Collapsed"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsLastChild}" Value="true">
+                                        <Setter TargetName="borderV" Property="VerticalAlignment" Value="Top"></Setter>
+                                        <Setter TargetName="borderV" Property="Height" Value="15"></Setter>
+                                    </DataTrigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <ControlTemplate TargetType="ToggleButton" x:Key="ExpandeButtonTemplate">
+                    <Border Background="#409EFE" CornerRadius="5" Width="15" Height="15">
+                        <Path Name="path" Data="M0 4 8 4M4 0 4 8" Stroke="White" StrokeThickness="1" VerticalAlignment="Center" HorizontalAlignment="Center"></Path>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="path" Property="Data" Value="M0 4 8 4"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </TreeView.Resources>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*" SharedSizeGroup="column1"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <ToggleButton Name="ExpandeButton" Template="{StaticResource ExpandeButtonTemplate}" IsChecked="{Binding IsExpanded}"></ToggleButton>
+                        <TextBlock Text="{Binding MenuName}" VerticalAlignment="Center" Grid.Column="1"/>
+                        <TextBlock Text="{Binding ViewName}" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2"/>
+                        <TextBlock Text="{Binding MenuIcon}" FontFamily="{StaticResource IconFont}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3"/>
+                        <TextBlock Text="操作" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4"/>
+                    </Grid>
+                    <HierarchicalDataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Children.Count}" Value="0">
+                            <Setter TargetName="ExpandeButton" Property="Visibility" Value="Collapsed"></Setter>
+                        </DataTrigger>
+                    </HierarchicalDataTemplate.Triggers>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
     </Grid>
 </UserControl>
