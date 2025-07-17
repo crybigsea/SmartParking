@@ -12,3 +12,5 @@ SmartParking.Client/SmartParking/SmartParking.Assets/obj/
 /SmartParking.Client/SmartParking/SmartParking.Common/obj/
 /SmartParking.Vue/.vscode
 /SmartParking.Vue/.husky
+/SmartParking.Client/SmartParking/SmartParking.DashboardModule/bin/Debug/net9.0-windows7.0
+/SmartParking.Client/SmartParking/SmartParking.DashboardModule/obj

@@ -8,7 +8,7 @@
         prism:ViewModelLocator.AutoWireViewModel="True" WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" Background="Transparent"
         FontFamily="Microsoft YaHei" FontSize="13" FontWeight="ExtraLight" Foreground="#333"
-        Title="美好智慧停车系统" Height="500" Width="800">
+        Title="美好智慧停车系统" Height="750" Width="1300">
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="-1" ResizeBorderThickness="4"/>
     </WindowChrome.WindowChrome>
