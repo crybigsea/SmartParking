@@ -16,7 +16,10 @@ namespace SmartParking.DashboardModule.ViewModels
 
         public ObservableCollection<RecordModel> RecordList { get; set; } = new ObservableCollection<RecordModel>();
 
+        public ObservableCollection<PassRecordItemModel> infoList { get; set; } = new ObservableCollection<PassRecordItemModel>();
+
         public SeriesCollection series { get; set; } = new SeriesCollection();
+        public SeriesCollection testSeries { get; set; } = new SeriesCollection();
 
         public DashboardViewModel(IUnityContainer unityContainer, IRegionManager regionManager)
             : base(unityContainer, regionManager)
@@ -34,6 +37,23 @@ namespace SmartParking.DashboardModule.ViewModels
             RecordList.Add(new RecordModel { CarImage = "/SmartParking.Assets;component/covers/wanF.jpg", PlateNumber = "鄂A25631", Info = "123" });
             RecordList.Add(new RecordModel { CarImage = "/SmartParking.Assets;component/covers/yiB.jpg", PlateNumber = "鄂A25632", Info = "123" });
             RecordList.Add(new RecordModel { CarImage = "/SmartParking.Assets;component/covers/yueA.jpg", PlateNumber = "鄂A25633", Info = "123" });
+
+            infoList.Add(new PassRecordItemModel()
+            {
+                PassDate = "2021-03-01 10:20:36",
+                Passageway = "A1",
+                TollCollector = "1024",
+                LiftingState = "自动",
+                Discount = 0,
+                State = "正常",
+                //MenuItemCommand = new DelegateCommand<object>(DataGridContextMenu)
+            });
+            infoList.Add(new PassRecordItemModel() { PassDate = "2021-03-01 10:20:36", Passageway = "A1", TollCollector = "1024", LiftingState = "自动", Discount = 0, State = "正常" });
+            infoList.Add(new PassRecordItemModel() { PassDate = "2021-03-01 10:20:36", Passageway = "A1", TollCollector = "1024", LiftingState = "自动", Discount = 0, State = "正常" });
+            infoList.Add(new PassRecordItemModel() { PassDate = "2021-03-01 10:20:36", Passageway = "A1", TollCollector = "1024", LiftingState = "自动", Discount = 0, State = "正常" });
+            infoList.Add(new PassRecordItemModel() { PassDate = "2021-03-01 10:20:36", Passageway = "A1", TollCollector = "1024", LiftingState = "自动", Discount = 0, State = "正常" });
+            infoList.Add(new PassRecordItemModel() { PassDate = "2021-03-01 10:20:36", Passageway = "A1", TollCollector = "1024", LiftingState = "自动", Discount = 0, State = "正常" });
+            infoList.Add(new PassRecordItemModel() { PassDate = "2021-03-01 10:20:36", Passageway = "A1", TollCollector = "1024", LiftingState = "自动", Discount = 0, State = "正常" });
 
             series.Add(new PieSeries
             {
@@ -59,6 +79,22 @@ namespace SmartParking.DashboardModule.ViewModels
             {
                 Title = "会员",
                 Values = new ChartValues<ObservableValue> { new ObservableValue(12.0) }
+            });
+
+            testSeries.Add(new PieSeries
+            {
+                Title = "前天",
+                Values = new ChartValues<ObservableValue> { new ObservableValue(10) }
+            });
+            testSeries.Add(new PieSeries
+            {
+                Title = "昨天",
+                Values = new ChartValues<ObservableValue> { new ObservableValue(20) }
+            });
+            testSeries.Add(new PieSeries
+            {
+                Title = "今天",
+                Values = new ChartValues<ObservableValue> { new ObservableValue(30) }
             });
         }
     }

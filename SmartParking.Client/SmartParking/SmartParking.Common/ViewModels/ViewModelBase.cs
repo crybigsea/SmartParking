@@ -49,11 +49,11 @@ namespace SmartParking.Common.ViewModels
 
         public virtual void Close()
         {
-            var registrationObj = _unityContainer.Registrations.Where(r => r.Name == NavUri).FirstOrDefault();
-            var viewType = registrationObj.MappedToType.Name;
+            //var registrationObj = _unityContainer.Registrations.Where(r => r.Name == NavUri).FirstOrDefault();
+            //var viewType = registrationObj.MappedToType.Name;
 
             var region = _regionManager.Regions["MainViewRegion"];
-            var view = region.Views.FirstOrDefault(v => v.GetType().Name == viewType);
+            var view = region.Views.FirstOrDefault(v => v.GetType().Name == NavUri);
             if (view != null)
                 region.Remove(view);
         }

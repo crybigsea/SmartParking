@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="/SmartParking.Assets;component/Styles/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="/SmartParking.Assets;component/Styles/DatePickerStyle.xaml"/>
                 <ResourceDictionary Source="/SmartParking.Assets;component/Styles/ScrollViewerStyle.xaml"/>
+                <ResourceDictionary Source="/SmartParking.Assets;component/Styles/DataGridStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="RadioButton" x:Key="TopTabButtonStyle">
                 <Setter Property="Height" Value="33"/>
@@ -50,159 +51,293 @@
             </ControlTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Margin="5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="370"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+    <ScrollViewer>
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="370"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-        <!--第一行-->
-        <Border Width="150" HorizontalAlignment="Left" BorderBrush="#EEE" BorderThickness="0,0,0,1" Margin="10,0">
-            <UniformGrid Rows="1">
-                <RadioButton Content="今天" HorizontalAlignment="Left" Style="{StaticResource TopTabButtonStyle}" IsChecked="True"></RadioButton>
-                <RadioButton Content="本周" HorizontalAlignment="Center" Style="{StaticResource TopTabButtonStyle}"></RadioButton>
-                <RadioButton Content="本月" HorizontalAlignment="Right" Style="{StaticResource TopTabButtonStyle}"></RadioButton>
-            </UniformGrid>
-        </Border>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0">
-            <ComboBox Width="130" Height="30" IsEditable="False" Margin="20,0"></ComboBox>
-            <DatePicker Width="130" Height="30" BorderThickness="0"></DatePicker>
-        </StackPanel>
+            <!--第一行-->
+            <Border Width="150" HorizontalAlignment="Left" BorderBrush="#EEE" BorderThickness="0,0,0,1" Margin="10,0">
+                <UniformGrid Rows="1">
+                    <RadioButton Content="今天" HorizontalAlignment="Left" Style="{StaticResource TopTabButtonStyle}" IsChecked="True"></RadioButton>
+                    <RadioButton Content="本周" HorizontalAlignment="Center" Style="{StaticResource TopTabButtonStyle}"></RadioButton>
+                    <RadioButton Content="本月" HorizontalAlignment="Right" Style="{StaticResource TopTabButtonStyle}"></RadioButton>
+                </UniformGrid>
+            </Border>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0">
+                <ComboBox Width="130" Height="30" IsEditable="False" Margin="20,0"></ComboBox>
+                <DatePicker Width="130" Height="30" BorderThickness="0"></DatePicker>
+            </StackPanel>
 
-        <!--第二行-->
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding BoardList}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Rows="1"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border CornerRadius="5" Background="#FAFCFF" Margin="10">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#555" Opacity="0.1"></DropShadowEffect>
-                        </Border.Effect>
-                        <StackPanel Margin="30,10">
-                            <TextBlock Foreground="#AAA" Margin="0,10,0,5" FontSize="12">
+            <!--第二行-->
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding BoardList}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="5" Background="#FAFCFF" Margin="10">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#555" Opacity="0.1"></DropShadowEffect>
+                            </Border.Effect>
+                            <StackPanel Margin="30,10">
+                                <TextBlock Foreground="#AAA" Margin="0,10,0,5" FontSize="12">
                                 <Run Text="{Binding Icon}" FontFamily="{StaticResource IconFont}" Foreground="{Binding Color}" FontSize="15"></Run>
                                 <Run Text="{Binding Header}"></Run>
-                            </TextBlock>
-                            <TextBlock Text="{Binding Value,StringFormat={}{0:N0}}" FontSize="22" FontWeight="Normal" Foreground="#555"></TextBlock>
-                            <Grid Margin="0,5,0,10">
-                                <TextBlock HorizontalAlignment="Left" Foreground="Green">
+                                </TextBlock>
+                                <TextBlock Text="{Binding Value,StringFormat={}{0:N0}}" FontSize="22" FontWeight="Normal" Foreground="#555"></TextBlock>
+                                <Grid Margin="0,5,0,10">
+                                    <TextBlock HorizontalAlignment="Left" Foreground="Green">
                                     <Run Text="&#xe662;" FontFamily="{StaticResource IconFont}"></Run>
                                     <Run Text="+5%"></Run>
-                                </TextBlock>
-                                <TextBlock HorizontalAlignment="Right">
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Right">
                                 <Hyperlink >详情</Hyperlink>
-                                </TextBlock>
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <!--第三行-->
-        <Grid Grid.Row="2" Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <!--第一列-->
-            <Border CornerRadius="5" Background="#FAFCFF">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#555" Opacity="0.1"></DropShadowEffect>
-                </Border.Effect>
-            </Border>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Border Height="1" VerticalAlignment="Bottom" Background="#EFEFEF"></Border>
-                <TextBlock Text="最新进出车辆记录" VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Left" Foreground="#888" Margin="15,0" FontWeight="Normal"></TextBlock>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <CheckBox Template="{StaticResource LastMonthButtonTemplate}" Content="上个月" FontSize="12" Foreground="#888"></CheckBox>
-                    <TextBlock Text="ss" Margin="15,0"></TextBlock>
-                </StackPanel>
-
-                <ListBox Grid.Row="1" Background="Transparent" BorderThickness="0" ItemsSource="{Binding RecordList}">
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="ListBoxItem">
-                                        <Border Background="Transparent" Name="border">
-                                            <ContentPresenter/>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#F0F6FB" TargetName="border"></Setter>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ListBox.ItemContainerStyle>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderBrush="#EFEFEF" BorderThickness="0,0,0,1">
-                                <Grid Margin="10,5">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <Border Width="130" Height="75" CornerRadius="5">
-                                        <Border.Background>
-                                            <ImageBrush ImageSource="{Binding CarImage}"></ImageBrush>
-                                        </Border.Background>
-                                    </Border>
-                                    <StackPanel Grid.Column="1">
-                                        <TextBlock Text="{Binding PlateNumber}"></TextBlock>
-                                        <TextBlock Text="{Binding Info}"></TextBlock>
-                                        <TextBlock FontSize="10">
-                                            <Run Text="停车场：" Foreground="#AAA"></Run>
-                                            <Run Text="xxx停车场" FontWeight="Normal" Foreground="#444"></Run>
-                                        </TextBlock>
-                                    </StackPanel>
+                                    </TextBlock>
                                 </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-            <!--第二列-->
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Border CornerRadius="5" Background="White" Margin="10,0,0,0">
+            <!--第三行-->
+            <Grid Grid.Row="2" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <!--第一列-->
+                <Border CornerRadius="5" Background="#FAFCFF">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#555" Opacity="0.1"></DropShadowEffect>
                     </Border.Effect>
-                    <Grid Margin="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="28"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="今日收费汇总" VerticalAlignment="Center" Foreground="#555"></TextBlock>
-                        <TextBlock Text="dd" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
-                        <lvc:PieChart  Grid.Row="1" Name="pie1" LegendLocation="Right" 
-                                       InnerRadius="30" Margin="5" HoverPushOut="1" 
+                </Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Height="1" VerticalAlignment="Bottom" Background="#EFEFEF"></Border>
+                    <TextBlock Text="最新进出车辆记录" VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Left" Foreground="#888" Margin="15,0" FontWeight="Normal"></TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <CheckBox Template="{StaticResource LastMonthButtonTemplate}" Content="上个月" FontSize="12" Foreground="#888"></CheckBox>
+                        <TextBlock Text="ss" Margin="15,0"></TextBlock>
+                    </StackPanel>
+
+                    <ListBox Grid.Row="1" Background="Transparent" BorderThickness="0" ItemsSource="{Binding RecordList}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <Border Background="Transparent" Name="border">
+                                                <ContentPresenter/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#F0F6FB" TargetName="border"></Setter>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#EFEFEF" BorderThickness="0,0,0,1">
+                                    <Grid Margin="10,5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Width="130" Height="75" CornerRadius="5">
+                                            <Border.Background>
+                                                <ImageBrush ImageSource="{Binding CarImage}"></ImageBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <Grid Grid.Column="1" Margin="10,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="{Binding PlateNumber}"></TextBlock>
+                                            <TextBlock Grid.Row="1" Text="{Binding Info}"></TextBlock>
+                                            <TextBlock Grid.Row="2" FontSize="10">
+                                            <Run Text="停车场：" Foreground="#AAA"></Run>
+                                            <Run Text="xxx停车场" FontWeight="Normal" Foreground="#444"></Run>
+                                            </TextBlock>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+
+                <!--第二列-->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Border CornerRadius="5" Background="White" Margin="10,0,0,0">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#555" Opacity="0.1"></DropShadowEffect>
+                        </Border.Effect>
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="28"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="今日收费汇总" VerticalAlignment="Center" Foreground="#555"></TextBlock>
+                            <TextBlock Text="dd" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
+                            <lvc:PieChart  Grid.Row="1" Name="pie1" LegendLocation="Right" 
+                                       InnerRadius="20" Margin="5" HoverPushOut="1" 
                                        DataTooltip="{x:Null}" Series="{Binding series}">
-                            <lvc:PieChart.ChartLegend>
-                                <lvc:DefaultLegend BulletSize="10" FontSize="10" Margin="30,5" Width="200" MinWidth="200"/>
-                            </lvc:PieChart.ChartLegend>
+                                <lvc:PieChart.ChartLegend>
+                                    <lvc:DefaultLegend BulletSize="10" FontSize="10" Margin="30,5" Width="200" MinWidth="200"/>
+                                </lvc:PieChart.ChartLegend>
+                            </lvc:PieChart>
+                        </Grid>
+                    </Border>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <UniformGrid Rows="1" Margin="5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="SkyBlue" Margin="5" Height="50" VerticalAlignment="Bottom"></Border>
+                                <Border Background="SkyBlue" Grid.Row="1" CornerRadius="10" Margin="5"></Border>
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="SkyBlue" Margin="5" Height="100" VerticalAlignment="Bottom"></Border>
+                                <Border Background="SkyBlue" Grid.Row="1" CornerRadius="10" Margin="5"></Border>
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="SkyBlue" Margin="5" Height="80" VerticalAlignment="Bottom"></Border>
+                                <Border Background="SkyBlue" Grid.Row="1" CornerRadius="10" Margin="5"></Border>
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="SkyBlue" Margin="5" Height="100" VerticalAlignment="Bottom"></Border>
+                                <Border Background="SkyBlue" Grid.Row="1" CornerRadius="10" Margin="5"></Border>
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="SkyBlue" Margin="5" Height="10" VerticalAlignment="Bottom"></Border>
+                                <Border Background="SkyBlue" Grid.Row="1" CornerRadius="10" Margin="5"></Border>
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="SkyBlue" Margin="5" Height="100" VerticalAlignment="Bottom"></Border>
+                                <Border Background="SkyBlue" Grid.Row="1" CornerRadius="5" Margin="5"></Border>
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="SkyBlue" Margin="5" Height="100" VerticalAlignment="Bottom"></Border>
+                                <Border Background="SkyBlue" Grid.Row="1" CornerRadius="5" Margin="5"></Border>
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="SkyBlue" Margin="5" Height="90" VerticalAlignment="Bottom"></Border>
+                                <Border Background="SkyBlue" Grid.Row="1" CornerRadius="5" Margin="5"></Border>
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="SkyBlue" Margin="5" Height="100" VerticalAlignment="Bottom"></Border>
+                                <Border Background="SkyBlue" Grid.Row="1" CornerRadius="5" Margin="5"></Border>
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="SkyBlue" Margin="5" Height="30" VerticalAlignment="Bottom"></Border>
+                                <Border Background="SkyBlue" Grid.Row="1" CornerRadius="5" Margin="5"></Border>
+                            </Grid>
+                        </UniformGrid>
+
+                        <lvc:PieChart Grid.Column="1" Margin="5" Series="{Binding testSeries}">
                         </lvc:PieChart>
                     </Grid>
+                </Grid>
+            </Grid>
+
+            <!--第四行-->
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border CornerRadius="5" Background="#FAFCFF">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#555" Opacity="0.1"></DropShadowEffect>
+                    </Border.Effect>
                 </Border>
+                <TextBlock Text="各门岗通行记录" VerticalAlignment="Center" FontSize="14" Margin="10,0" FontWeight="Normal" Foreground="#555"></TextBlock>
+                <DataGrid Grid.Row="1" Margin="0,0,0,10" ItemsSource="{Binding infoList}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="日期" Width="*" Binding="{Binding PassDate}"/>
+                        <DataGridTextColumn Header="通道名称" Width="*" Binding="{Binding Passageway}"/>
+                        <DataGridTextColumn Header="收费员" Width="*" Binding="{Binding TollCollector}"/>
+                        <DataGridTextColumn Header="抬杆状态" Width="*" Binding="{Binding LiftingState}"/>
+                        <DataGridTextColumn Header="累计减免" Width="*" Binding="{Binding Discount}"/>
+                        <DataGridTextColumn Header="使用状态" Width="*" Binding="{Binding State}"/>
+                        <DataGridTemplateColumn Header="操作" Width="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock>
+                                        <Hyperlink Command="{Binding RecordItemCommand}"
+                                                   CommandParameter="{Binding}">查看详情</Hyperlink>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </UserControl>
