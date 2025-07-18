@@ -106,7 +106,15 @@
                         <TextBlock Text="{Binding MenuName}" VerticalAlignment="Center" Grid.Column="1"/>
                         <TextBlock Text="{Binding ViewName}" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2"/>
                         <TextBlock Text="{Binding MenuIcon}" FontFamily="{StaticResource IconFont}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3"/>
-                        <TextBlock Text="操作" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4"/>
+                        <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Margin="0,0,5,0">
+                                <Hyperlink Command="{Binding DataContext.EditCommand,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                           CommandParameter="{Binding}">编辑</Hyperlink>
+                            </TextBlock>
+                            <TextBlock>
+                                <Hyperlink>删除</Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
                     </Grid>
                     <HierarchicalDataTemplate.Triggers>
                         <DataTrigger Binding="{Binding Children.Count}" Value="0">

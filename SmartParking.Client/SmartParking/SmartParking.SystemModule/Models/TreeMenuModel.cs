@@ -1,15 +1,13 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation.Regions;
+﻿using Prism.Mvvm;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
 
 namespace SmartParking.SystemModule.Models
 {
     public class TreeMenuModel : BindableBase
     {
+        public Guid Id { get; set; }
+
         public string MenuName { get; set; }
 
         public string ViewName { get; set; }
@@ -28,24 +26,5 @@ namespace SmartParking.SystemModule.Models
         public bool IsLastChild { get; set; }
 
         public ObservableCollection<TreeMenuModel> Children { get; set; }
-
-        public ICommand OpenViewCommand
-        {
-            get
-            {
-                return new DelegateCommand<TreeMenuModel>(menu =>
-                {
-                    if ((menu.Children == null || !menu.Children.Any()) && !string.IsNullOrEmpty(menu.ViewName))
-                        _regionManager.RequestNavigate("MainViewRegion", menu.ViewName);
-                    else
-                        menu.IsExpanded = !menu.IsExpanded;
-                });
-            }
-        }
-        private IRegionManager _regionManager;
-        public TreeMenuModel(IRegionManager regionManager)
-        {
-            _regionManager = regionManager;
-        }
     }
 }

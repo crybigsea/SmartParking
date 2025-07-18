@@ -58,7 +58,7 @@
 
                                 <Grid.InputBindings>
                                     <MouseBinding MouseAction="LeftDoubleClick"
-                                                  Command="{Binding OpenViewCommand}"
+                                                  Command="{Binding DataContext.OpenViewCommand,RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                   CommandParameter="{Binding}"/>
                                 </Grid.InputBindings>
 

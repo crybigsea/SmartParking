@@ -1,4 +1,5 @@
-﻿using Prism.Navigation.Regions;
+﻿using Prism.Commands;
+using Prism.Navigation.Regions;
 using SmartParking.Client;
 using SmartParking.Client.Dtos.SysMenu;
 using SmartParking.Common;
@@ -12,12 +13,14 @@ namespace SmartParking.SystemModule.ViewModels
 {
     public class TreeMenuViewModel
     {
+        private IRegionManager _regionManager;
         private readonly IMenuService _menuService;
         private readonly GlobalInfo _globalInfo;
 
         public ObservableCollection<TreeMenuModel> Menus { get; set; } = new ObservableCollection<TreeMenuModel>();
         private IList<SysMenuDto> allMenus { get; set; }
-        private IRegionManager _regionManager { get; set; }
+
+        public DelegateCommand<TreeMenuModel> OpenViewCommand { get; set; }
 
         public TreeMenuViewModel(IMenuService menuService, IRegionManager regionManager, GlobalInfo globalInfo)
         {
@@ -25,9 +28,16 @@ namespace SmartParking.SystemModule.ViewModels
             _regionManager = regionManager;
             _globalInfo = globalInfo;
 
+            OpenViewCommand = new DelegateCommand<TreeMenuModel>(menu =>
+            {
+                if ((menu.Children == null || !menu.Children.Any()) && !string.IsNullOrEmpty(menu.ViewName))
+                    _regionManager.RequestNavigate("MainViewRegion", menu.ViewName);
+                else
+                    menu.IsExpanded = !menu.IsExpanded;
+            });
+
             allMenus = _menuService.GetAllMenus($"Bearer {_globalInfo.LoginUserInfo?.Token}").GetAwaiter().GetResult().items;
             FillMenus(Menus, null);
-
         }
 
         private void FillMenus(ObservableCollection<TreeMenuModel> menus, Guid? parentId)
@@ -37,7 +47,7 @@ namespace SmartParking.SystemModule.ViewModels
             {
                 foreach (var item in child)
                 {
-                    var menu = new TreeMenuModel(_regionManager)
+                    var menu = new TreeMenuModel()
                     {
                         MenuIcon = item.MenuIcon,
                         MenuName = item.MenuName,

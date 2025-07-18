@@ -19,8 +19,9 @@ namespace SmartParking.SystemModule
             containerRegistry.Register<TreeMenuView>();
             containerRegistry.Register<MainHeaderView>();
             containerRegistry.RegisterForNavigation<FileUploadView>();
-            containerRegistry.RegisterForNavigation<MenuView>();
             containerRegistry.RegisterDialog<AddFileDialog>();
+            containerRegistry.RegisterForNavigation<MenuView>();
+            containerRegistry.RegisterDialog<MenuOperateView>();
             containerRegistry.RegisterForNavigation<UserView>();
         }
     }
